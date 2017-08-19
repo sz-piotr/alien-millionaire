@@ -16,7 +16,7 @@ function toDomElement(vDomNode) {
 
   const element = document.createElement(vDomNode.tagName)
   for(const prop in vDomNode.props) {
-    element.setAttribute(toDomProp(prop), vDomNode.props[prop])
+    setProp(element, prop, vDomNode.props[prop])
   }
   for(let i = 0; i < vDomNode.children.length; ++i) {
     const child = toDomElement(vDomNode.children[i])
@@ -26,11 +26,15 @@ function toDomElement(vDomNode) {
   return element
 }
 
-function toDomProp(prop) {
+function setProp(element, prop, value) {
   switch(prop) {
+    case 'onClick':
+      element.addEventListener('click', value)
+      break
     case 'className':
-      return 'class'
+      element.setAttribute('class', value)
+      break
     default:
-      return prop
+      element.setAttribute(prop, value)
   }
 }

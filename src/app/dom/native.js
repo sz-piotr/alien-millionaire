@@ -11,3 +11,4 @@ function NativeComponent(tagName) {
 export const div = NativeComponent('div')
 export const h1 = NativeComponent('h1')
 export const p = NativeComponent('p')
+export const button = NativeComponent('button')
