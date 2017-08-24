@@ -39,6 +39,11 @@ let config = {
         fallback: 'style-loader',
         use: 'css-loader'
       })
+    }, {
+      test: /\.html$/,
+      use: {
+        loader: 'html-loader'
+      }
     }]
   },
   plugins: [
@@ -48,7 +53,8 @@ let config = {
   ],
   stats: 'minimal',
   devServer: {
-    stats: 'minimal'
+    stats: 'minimal',
+    disableHostCheck: true
   }
 }
 

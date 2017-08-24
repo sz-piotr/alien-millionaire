@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "start": "webpack-dev-server --progress",
+    "public": "npm start -- --host=0.0.0.0",
     "build": "webpack -p --progress",
     "postbuild": "node postbuild.js"
   },
@@ -13,6 +14,7 @@
     "babel-preset-env": "^1.6.0",
     "css-loader": "^0.28.4",
     "extract-text-webpack-plugin": "^3.0.0",
+    "html-loader": "^0.5.1",
     "html-webpack-inline-source-plugin": "^0.0.9",
     "html-webpack-plugin": "^2.29.0",
     "style-loader": "^0.18.2",

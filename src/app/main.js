@@ -1,24 +1,9 @@
-import { Component, mount } from './dom'
-import { div, h1, p, button } from './dom/native'
+import storage from './storage'
+import { playIntro } from './intro'
 
-const Header = Component(
-  props => h1({}, [props.title])
-)
+const isFirstTime = true // !storage.getItem('playedIntro')
 
-const App = Component(
-  props =>
-    div({ className: 'lawl' }, [
-      Header({ title: 'Hello' }),
-      p({}, ['World!']),
-      button({
-        onClick: console.log
-      }, [
-        'asdasd'
-      ])
-    ])
-)
-
-mount(
-  App(),
-  document.getElementById('root')
-)
+if(isFirstTime) {
+  playIntro(root)
+} else {
+}
