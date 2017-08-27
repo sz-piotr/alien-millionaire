@@ -1,5 +1,5 @@
 export default {
-  app: 'com.szpiotr.alienmillionaire',
+  app: 'com.szpiotr.alienmillionaire.',
   setItem(key, value) {
     localStorage.setItem(this.app + key, JSON.stringify(value))
   },
