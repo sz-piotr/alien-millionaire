@@ -3,24 +3,48 @@ import questionsDb from './questions.json'
 
 const QUESTIONS_COUNT = 3
 
-export function startQuiz(difficultyLvl) {
-  document.getElementById("root").innerHTML = quizHtml
-
-  const answersElement = document.getElementById("quiz-answers")
-
-  const questions = pickQuestions(questionsDb, difficultyLvl)
-  const answers = questions[0].answers
-  answers.forEach(answer => answersElement.appendChild(toListItem(answer)))
-  document.getElementById("quiz-question").innerHTML = questions[0].text + 'asdasd'
+export function runQuiz(difficultyLvl) {
+  const gameState = {
+    currentQuestion: 0,
+    questions: pickQuestions(questionsDb, difficultyLvl)
+  }
+  initQuiz(difficultyLvl, index => onSelectAnswer(gameState, index))
+  renderQuestion(gameState.questions[0])
 }
 
-function toListItem(answer) {
+function onSelectAnswer(gameState, index) {
+  if (gameState.questions[gameState.currentQuestion].answers[index].correct) {
+    alert("you are one step closer to seeing mama again :D")
+    gameState.currentQuestion++
+    renderQuestion(gameState.questions[gameState.currentQuestion])
+  } else {
+    alert("you (are) LOST (for x more days XD)")
+  }
+}
+
+function initQuiz(difficultyLvl, onClick) {
+  document.getElementById("root").innerHTML = quizHtml
+  const answersElement = document.getElementById("quiz-answers")
+  for(let i = 0; i < difficultyLvl; i++) {
+    answersElement.appendChild(createAnswerElement(() => onClick(i)))
+  }
+}
+
+function createAnswerElement(onClick) {
   const li = document.createElement('li')
   const a = document.createElement('a')
-  li.appendChild(a)
   a.href = '#'
-  a.innerHTML = `${answer.text}, correct: ${answer.correct}`
+  a.addEventListener('click', onClick)
+  li.appendChild(a)
   return li
+}
+
+function renderQuestion({ text, answers }) {
+  document.getElementById("quiz-question").innerHTML = text
+  const answerElements = document.querySelectorAll('#quiz-answers a')
+  answers.forEach((answer, index) =>
+    answerElements[index].innerHTML = answer.text
+  )
 }
 
 function pickQuestions(questionsDb, difficultyLvl) {
