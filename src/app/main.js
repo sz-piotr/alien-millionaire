@@ -11,6 +11,7 @@ if(isFirstTime) {
     {
       difficultyLvl: 3,
       questionsCount: 3,
+      intervalLengthMultiplier: 3,
       knownWords: []
     },
     points => console.log('FAIL', points),

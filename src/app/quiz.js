@@ -49,12 +49,18 @@ function renderQuestion({ text, answers }) {
   )
 }
 
-function pickQuestions(questionsDb, { difficultyLvl, questionsCount }) {
+function pickQuestions(questionsDb, { difficultyLvl, questionsCount, intervalLengthMultiplier }) {
+  const maxIndex = Math.floor(questionsDb.length / questionsCount) * intervalLengthMultiplier
   questionsDb = questionsDb.slice()
 
   const pickedQuestions = []
   for(let i = 0; i < questionsCount; i++) {
-    pickedQuestions.push(pickQuestion(questionsDb, difficultyLvl))
+    pickedQuestions.push(pickQuestion(
+      questionsDb,
+      difficultyLvl,
+      maxIndex,
+      maxIndex / intervalLengthMultiplier - 1)
+    )
   }
 
   return pickedQuestions.map((question) => ({
@@ -67,11 +73,12 @@ function pickQuestions(questionsDb, { difficultyLvl, questionsCount }) {
   }))
 }
 
-function pickQuestion(questionsDb, difficultyLvl) {
-  const questionIdx = Math.floor(Math.random() * questionsDb.length)
+function pickQuestion(questionsDb, difficultyLvl, maxIndex, removeCount) {
+  console.log(maxIndex, questionsDb.length)
+  const questionIdx = Math.floor(Math.random() * Math.min(maxIndex, questionsDb.length))
   const chosenQuestion = questionsDb[questionIdx]
   questionsDb.splice(questionIdx, 1)
-  // questionsDb.splice(0, 4)
+  questionsDb.splice(0, Math.min(removeCount, questionsDb.length))
   return chosenQuestion
 }
 
