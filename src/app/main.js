@@ -1,6 +1,7 @@
 import storage from './storage'
 import { playIntro } from './intro'
 import { runQuiz } from './quiz'
+import './language'
 
 const isFirstTime = false // !storage.getItem('playedIntro')
 

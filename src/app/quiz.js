@@ -74,7 +74,6 @@ function pickQuestions(questionsDb, { difficultyLvl, questionsCount, intervalLen
 }
 
 function pickQuestion(questionsDb, difficultyLvl, maxIndex, removeCount) {
-  console.log(maxIndex, questionsDb.length)
   const questionIdx = Math.floor(Math.random() * Math.min(maxIndex, questionsDb.length))
   const chosenQuestion = questionsDb[questionIdx]
   questionsDb.splice(questionIdx, 1)
