@@ -1,28 +1,30 @@
 import quizHtml from './quiz.html'
 import questionsDb from './questions.json'
 
-const QUESTIONS_COUNT = 3
-
-export function runQuiz(difficultyLvl) {
+export function runQuiz(config, onFailure, onSuccess) {
   const gameState = {
     currentQuestion: 0,
-    questions: pickQuestions(questionsDb, difficultyLvl)
+    questions: pickQuestions(questionsDb, config)
   }
-  initQuiz(difficultyLvl, index => onSelectAnswer(gameState, index))
+  initQuiz(config, index => onSelectAnswer(gameState, index, onFailure, onSuccess))
   renderQuestion(gameState.questions[0])
 }
 
-function onSelectAnswer(gameState, index) {
+function onSelectAnswer(gameState, index, onFailure, onSuccess) {
   if (gameState.questions[gameState.currentQuestion].answers[index].correct) {
     alert("you are one step closer to seeing mama again :D")
     gameState.currentQuestion++
-    renderQuestion(gameState.questions[gameState.currentQuestion])
+    if (gameState.currentQuestion === gameState.questions.length) {
+      onSuccess()
+    } else {
+      renderQuestion(gameState.questions[gameState.currentQuestion])
+    }
   } else {
-    alert("you (are) LOST (for x more days XD)")
+    onFailure(gameState.currentQuestion)
   }
 }
 
-function initQuiz(difficultyLvl, onClick) {
+function initQuiz({ difficultyLvl }, onClick) {
   document.getElementById("root").innerHTML = quizHtml
   const answersElement = document.getElementById("quiz-answers")
   for(let i = 0; i < difficultyLvl; i++) {
@@ -47,11 +49,11 @@ function renderQuestion({ text, answers }) {
   )
 }
 
-function pickQuestions(questionsDb, difficultyLvl) {
+function pickQuestions(questionsDb, { difficultyLvl, questionsCount }) {
   questionsDb = questionsDb.slice()
 
   const pickedQuestions = []
-  for(let i = 0; i < QUESTIONS_COUNT; i++) {
+  for(let i = 0; i < questionsCount; i++) {
     pickedQuestions.push(pickQuestion(questionsDb, difficultyLvl))
   }
 

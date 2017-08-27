@@ -7,5 +7,13 @@ const isFirstTime = false // !storage.getItem('playedIntro')
 if(isFirstTime) {
   playIntro(root)
 } else {
-  runQuiz(4)
+  runQuiz(
+    {
+      difficultyLvl: 3,
+      questionsCount: 3,
+      knownWords: []
+    },
+    points => console.log('FAIL', points),
+    () => alert('WOOOOHOOOO, mama is proud')
+  )
 }
