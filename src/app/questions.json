@@ -1,0 +1,38 @@
+[
+  {
+    "question": "q1?",
+    "answers": [
+      "q1a1",
+      "q1a2",
+      "q1a3",
+      "q1a4"
+    ]
+  },
+  {
+    "question": "q2?",
+    "answers": [
+      "q2a1",
+      "q2a2",
+      "q2a3",
+      "q2a4"
+    ]
+  },
+  {
+    "question": "q3?",
+    "answers": [
+      "q3a1",
+      "q3a2",
+      "q3a3",
+      "q3a4"
+    ]
+  },
+  {
+    "question": "q4?",
+    "answers": [
+      "q4a1",
+      "q4a2",
+      "q4a3",
+      "q4a4"
+    ]
+  }
+]

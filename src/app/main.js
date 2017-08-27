@@ -1,9 +1,11 @@
 import storage from './storage'
 import { playIntro } from './intro'
+import { startQuiz } from './quiz'
 
-const isFirstTime = true // !storage.getItem('playedIntro')
+const isFirstTime = false // !storage.getItem('playedIntro')
 
 if(isFirstTime) {
   playIntro(root)
 } else {
+  startQuiz(4)
 }
