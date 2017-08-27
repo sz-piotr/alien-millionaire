@@ -26,6 +26,6 @@ const text2 = "abcdefghijklmnopqrst"
   .map(x => x === -65 ? '&nbsp;&nbsp;' : lang[x%20])
   .join('')
 
-setTimeout(() => document.body.innerHTML = text + '<br/>' + text2, 100)
+// setTimeout(() => document.body.innerHTML = text + '<br/>' + text2, 100)
 
-console.log(lang)
+// console.log(lang)

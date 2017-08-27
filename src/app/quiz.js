@@ -12,7 +12,6 @@ export function runQuiz(config, onFailure, onSuccess) {
 
 function onSelectAnswer(gameState, index, onFailure, onSuccess) {
   if (gameState.questions[gameState.currentQuestion].answers[index].correct) {
-    alert("you are one step closer to seeing mama again :D")
     gameState.currentQuestion++
     if (gameState.currentQuestion === gameState.questions.length) {
       onSuccess()

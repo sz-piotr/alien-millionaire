@@ -10,12 +10,12 @@ if(isFirstTime) {
 } else {
   runQuiz(
     {
-      difficultyLvl: 3,
-      questionsCount: 3,
-      intervalLengthMultiplier: 3,
+      difficultyLvl: 4,
+      questionsCount: 5,
+      intervalLengthMultiplier: 2,
       knownWords: []
     },
-    points => console.log('FAIL', points),
+    points => alert('NOPE!' + points),
     () => alert('WOOOOHOOOO, mama is proud')
   )
 }
