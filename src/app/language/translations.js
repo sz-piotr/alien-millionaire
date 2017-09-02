@@ -15,11 +15,11 @@ questions.split(/\s/)
   .map(word => /[\w']+/.exec(word)[0].toLowerCase())
   .forEach(word => {
     if(!(word in translations)) {
-      translations[word] = translate(word)
+      translations[word] = generateTranslation(word)
     }
   })
 
-function translate(word) {
+function generateTranslation(word) {
   return word.split('')
     .map(char => wheelSet.getMapped(char))
     .join('')

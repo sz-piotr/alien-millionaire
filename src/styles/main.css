@@ -17,3 +17,11 @@ body,
 html {
   font-size: 14px;
 }
+
+body {
+  word-spacing: 0.5em;
+}
+
+a {
+  text-decoration: none;
+}

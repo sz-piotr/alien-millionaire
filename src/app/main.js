@@ -8,14 +8,17 @@ const isFirstTime = false // !storage.getItem('playedIntro')
 if(isFirstTime) {
   playIntro(root)
 } else {
-  runQuiz(
-    {
-      difficultyLvl: 4,
-      questionsCount: 5,
-      intervalLengthMultiplier: 2,
-      knownWords: []
-    },
-    points => alert('NOPE!' + points),
-    () => alert('WOOOOHOOOO, mama is proud')
-  )
+  runQuiz({
+    difficultyLvl: 4,
+    questionsCount: 5,
+    intervalLengthMultiplier: 2,
+    knownWords: [
+      'what',
+      'one',
+      'two',
+      'red'
+    ],
+    onFailure: points => alert('NOPE!' + points),
+    onSuccess: () => alert('WOOOOHOOOO, mama is proud')
+  })
 }

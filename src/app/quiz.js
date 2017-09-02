@@ -1,25 +1,26 @@
 import quizHtml from './quiz.html'
 import questionsDb from './questions'
+import { translateSentence } from './language'
 
-export function runQuiz(config, onFailure, onSuccess) {
+export function runQuiz(config) {
   const gameState = {
     currentQuestion: 0,
     questions: pickQuestions(questionsDb, config)
   }
-  initQuiz(config, index => onSelectAnswer(gameState, index, onFailure, onSuccess))
-  renderQuestion(gameState.questions[0])
+  initQuiz(config, index => onSelectAnswer(gameState, index, config))
+  renderQuestion(gameState.questions[0], config.knownWords)
 }
 
-function onSelectAnswer(gameState, index, onFailure, onSuccess) {
+function onSelectAnswer(gameState, index, config) {
   if (gameState.questions[gameState.currentQuestion].answers[index].correct) {
     gameState.currentQuestion++
     if (gameState.currentQuestion === gameState.questions.length) {
-      onSuccess()
+      config.onSuccess()
     } else {
-      renderQuestion(gameState.questions[gameState.currentQuestion])
+      renderQuestion(gameState.questions[gameState.currentQuestion], config.knownWords)
     }
   } else {
-    onFailure(gameState.currentQuestion)
+    config.onFailure(gameState.currentQuestion)
   }
 }
 
@@ -40,11 +41,11 @@ function createAnswerElement(onClick) {
   return li
 }
 
-function renderQuestion({ text, answers }) {
-  document.getElementById("quiz-question").innerHTML = text
+function renderQuestion({ text, answers }, knownWords) {
+  document.getElementById("quiz-question").innerHTML = translateSentence(text, knownWords)
   const answerElements = document.querySelectorAll('#quiz-answers a')
   answers.forEach((answer, index) =>
-    answerElements[index].innerHTML = answer.text
+    answerElements[index].innerHTML = translateSentence(answer.text, knownWords)
   )
 }
 
