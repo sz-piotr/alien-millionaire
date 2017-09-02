@@ -17,6 +17,7 @@
     "html-loader": "^0.5.1",
     "html-webpack-inline-source-plugin": "^0.0.9",
     "html-webpack-plugin": "^2.29.0",
+    "raw-loader": "^0.5.1",
     "style-loader": "^0.18.2",
     "webpack": "^3.3.0",
     "webpack-dev-server": "^2.5.1"

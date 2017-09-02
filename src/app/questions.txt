@@ -1,0 +1,71 @@
+What color is a red car?
+red
+blue
+green
+yellow
+
+You have two potatoes. How much potatoes do you have?
+two
+one
+three
+five
+
+How tall is a three meter wardrobe?
+three meters tall
+two meters tall
+one meter tall
+eight meters tall
+
+What is four plus four?
+eight
+one
+three
+six
+
+A green house is not:
+blue
+green
+a house
+a green house
+
+A tasty cheese is:
+tasty
+not tasty
+not a cheese
+a cat
+
+A barefoot alien has:
+no footwear
+socks
+shoes
+tights
+
+Which of these fuels is the best for interstellar travel?
+hiperdrive cells
+potatoes
+coal
+chicken
+
+How many legs does five chickens have?
+ten
+five
+three
+one
+
+If you cut a piece of paper in half how many pieces you have?
+two
+one
+zero
+potato
+
+Why did the chicken cross the road?
+To get to the other side
+To not cross the road
+I don't know
+tree
+
+What isn't in a ham and cheese sandwich?
+mustard
+cheese
+ham
+sandwich

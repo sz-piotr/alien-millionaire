@@ -44,6 +44,11 @@ let config = {
       use: {
         loader: 'html-loader'
       }
+    }, {
+      test: /\.txt$/,
+      use: {
+        loader: 'raw-loader'
+      }
     }]
   },
   plugins: [

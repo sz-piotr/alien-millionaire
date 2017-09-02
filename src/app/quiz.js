@@ -1,5 +1,5 @@
 import quizHtml from './quiz.html'
-import questionsDb from './questions.json'
+import questionsDb from './questions'
 
 export function runQuiz(config, onFailure, onSuccess) {
   const gameState = {
