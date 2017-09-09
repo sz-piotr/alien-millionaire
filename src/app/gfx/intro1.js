@@ -25,32 +25,55 @@ for(let i = 0; i < 200; i++) {
 }
 
 drawSpaceShip(ctx, new Vector2(150, 200))
+drawPlanet(ctx, new Vector2(650, 450))
 
 export default canvas.toDataURL()
 
+function translated(ctx, origin, callback) {
+  ctx.translate(origin.x, origin.y)
+  callback()
+  ctx.translate(-origin.x, -origin.y)
+}
 
 function drawSpaceShip(ctx, origin) {
-  ctx.translate(origin.x, origin.y)
+  translated(ctx, origin, () => {
+    ctx.fillStyle = '#777'
+    drawPolygon(ctx, [
+      { x: -10, y: 0 },
+      { x: -10, y: -50 },
+      { x: -80, y: -70 },
+    ])
+    drawPolygon(ctx, [
+      { x: 0, y: 50 },
+      { x: -80, y: 70 },
+      { x: 0, y: 0 },
+    ])
 
-  ctx.fillStyle = '#777'
-  drawPolygon(ctx, [
-    { x: -10, y: 0 },
-    { x: -10, y: -50 },
-    { x: -80, y: -70 },
-  ])
-  drawPolygon(ctx, [
-    { x: 0, y: 50 },
-    { x: -80, y: 70 },
-    { x: 0, y: 0 },
-  ])
+    ctx.fillStyle = '#c3c3c3'
+    drawPolygon(ctx, [
+      { x: -50, y: -10 },
+      { x: -10, y: -50 },
+      { x: 150, y: 10 },
+      { x: 0, y: 50 },
+    ])
+  })
+}
 
-  ctx.fillStyle = '#c3c3c3'
-  drawPolygon(ctx, [
-    { x: -50, y: -10 },
-    { x: -10, y: -50 },
-    { x: 150, y: 10 },
-    { x: 0, y: 50 },
-  ])
+function drawPlanet(ctx, origin) {
+  translated(ctx, origin, () => {
+    ctx.fillStyle = '#DC143C'
+    circle(ctx, 0, 0, 200)
+    
+    ctx.fillStyle = '#B22222'
+    circle(ctx, -80, -110, 40)
+    circle(ctx, 70, 20, 30)
+    circle(ctx, 0, -130, 30)
+  })
+}
 
-  ctx.translate(0, 0)
+function circle(ctx, x, y, r) {
+  ctx.beginPath()
+  ctx.arc(x, y, r, 0, 2 * Math.PI)
+  ctx.closePath()
+  ctx.fill()
 }
