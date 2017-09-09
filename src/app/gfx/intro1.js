@@ -1,6 +1,8 @@
 import Vector2 from './Vector2'
 import drawStar from './drawStar'
 import drawPolygon from './drawPolygon'
+import circle from './circle'
+import marsGroundPattern from './marsGroundPattern'
 
 const WIDTH = 800
 const HEIGHT = 600
@@ -15,12 +17,13 @@ ctx.fillStyle = '#222'
 ctx.fillRect(0, 0, WIDTH, HEIGHT)
 
 for(let i = 0; i < 200; i++) {
+  const gray = Math.floor(Math.random() * 130 + 100).toString(16)
+  ctx.fillStyle = `#${gray}${gray}${gray}`
   drawStar(
     ctx,
     new Vector2(Math.random() * WIDTH, Math.random() * HEIGHT),
     Math.floor(Math.random() * 4) + 4,
-    Math.random() * 2 + .3,
-    Math.random() * 130 + 100
+    Math.random() * 2 + .3
   )
 }
 
@@ -61,19 +64,13 @@ function drawSpaceShip(ctx, origin) {
 
 function drawPlanet(ctx, origin) {
   translated(ctx, origin, () => {
-    ctx.fillStyle = '#DC143C'
+    const pattern = ctx.createPattern(marsGroundPattern(300, 2000), 'repeat')
+    ctx.fillStyle = pattern
     circle(ctx, 0, 0, 200)
-    
+
     ctx.fillStyle = '#B22222'
     circle(ctx, -80, -110, 40)
     circle(ctx, 70, 20, 30)
     circle(ctx, 0, -130, 30)
   })
-}
-
-function circle(ctx, x, y, r) {
-  ctx.beginPath()
-  ctx.arc(x, y, r, 0, 2 * Math.PI)
-  ctx.closePath()
-  ctx.fill()
 }
