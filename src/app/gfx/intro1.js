@@ -42,22 +42,22 @@ function drawSpaceShip(ctx, origin) {
   translated(ctx, origin, () => {
     ctx.fillStyle = '#777'
     drawPolygon(ctx, [
-      { x: -10, y: 0 },
-      { x: -10, y: -50 },
-      { x: -80, y: -70 },
+      new Vector2(-10, 0),
+      new Vector2(-10, -50),
+      new Vector2(-80, -70),
     ])
     drawPolygon(ctx, [
-      { x: 0, y: 50 },
-      { x: -80, y: 70 },
-      { x: 0, y: 0 },
+      new Vector2(0, 50),
+      new Vector2(-80, 70),
+      new Vector2(0, 0),
     ])
 
     ctx.fillStyle = '#c3c3c3'
     drawPolygon(ctx, [
-      { x: -50, y: -10 },
-      { x: -10, y: -50 },
-      { x: 150, y: 10 },
-      { x: 0, y: 50 },
+      new Vector2(-50, -10),
+      new Vector2(-10, -50),
+      new Vector2(150, 10),
+      new Vector2(0, 50),
     ])
   })
 }
