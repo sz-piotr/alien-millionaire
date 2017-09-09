@@ -3,7 +3,7 @@ import { playIntro } from './intro'
 import { runQuiz } from './quiz'
 import './language'
 
-const isFirstTime = false // !storage.getItem('playedIntro')
+const isFirstTime = true // !storage.getItem('playedIntro')
 
 if(isFirstTime) {
   playIntro(root)

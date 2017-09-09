@@ -1,6 +1,8 @@
 import storage from './storage'
 import introHtml from './intro.html'
 
+import introImage1 from './gfx/intro1'
+
 export function playIntro(done) {
   const root = document.getElementById('root')
   root.innerHTML = introHtml
@@ -16,6 +18,8 @@ function showPage1(root, done) {
   const image1 = root.querySelector('.comic-1 .comic-image')
   const image2 = root.querySelector('.comic-2 .comic-image')
   const image3 = root.querySelector('.comic-3 .comic-image')
+
+  image1.style.backgroundImage = `url(${introImage1})`
 
   let step = 0
   let timeout = setTimeout(next)
@@ -42,7 +46,7 @@ function showPage1(root, done) {
         break
     }
     if(step < 2) {
-      timeout = setTimeout(next, 2000)
+      timeout = setTimeout(next, 0)
     }
     step++
   }

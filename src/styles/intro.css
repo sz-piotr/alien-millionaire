@@ -59,7 +59,7 @@
 .comic-image {
   width: 100%;
   height: 100%;
-  background-image: url("https://goo.gl/Mt95eQ");
+  background-color: cornflowerblue;
   background-size: cover;
   background-position: center;
   border: 3px solid black;
