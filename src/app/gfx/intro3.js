@@ -1,7 +1,8 @@
 import Vector2 from './Vector2'
 import drawPolygon from './drawPolygon'
 import drawStar from './drawStar'
-import cirle from './circle'
+import circle from './circle'
+import drawSmooth from './drawSmooth'
 import marsGroundPattern from './marsGroundPattern'
 
 const WIDTH = 1000
@@ -31,12 +32,12 @@ for(let i = 0; i < 30; i++) {
 }
 
 ctx.fillStyle = 'white'
-cirle(ctx, WIDTH * 0.74, HEIGHT * 0.3, 43)
-cirle(ctx, WIDTH * 0.87, HEIGHT / 2, 23)
+circle(ctx, WIDTH * 0.74, HEIGHT * 0.3, 43)
+circle(ctx, WIDTH * 0.87, HEIGHT / 2, 23)
 
 const pattern = ctx.createPattern(marsGroundPattern(300, 2000), 'repeat')
 ctx.fillStyle = pattern
-cirle(ctx, WIDTH / 2, HEIGHT + 10000, 10200)
+circle(ctx, WIDTH / 2, HEIGHT + 10000, 10200)
 
 ctx.fillStyle = '#777'
 drawPolygon(ctx, [
@@ -76,20 +77,3 @@ ctx.closePath()
 ctx.fill()
 
 export default canvas.toDataURL()
-
-
-function drawSmooth(ctx, points, next = false) {
-  if(next) {
-    ctx.lineTo(points[0].x, points[0].y)
-  } else {
-    ctx.moveTo(points[0].x, points[0].y)
-  }
-  let i = 1
-  for (; i < points.length - 2; i ++)
-  {
-    const xc = (points[i].x + points[i + 1].x) / 2
-    const yc = (points[i].y + points[i + 1].y) / 2
-    ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc)
-  }
-  ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y)
-}
