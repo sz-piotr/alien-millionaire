@@ -4,6 +4,9 @@ import introHtml from './intro.html'
 import introImage1 from './gfx/intro1'
 import introImage2 from './gfx/intro2'
 import introImage3 from './gfx/intro3'
+import introImage4 from './gfx/intro4'
+import introImage5 from './gfx/intro5'
+import introImage6 from './gfx/intro6'
 
 export function playIntro(done) {
   const root = document.getElementById('root')
@@ -46,7 +49,47 @@ function showPage1(root, done) {
         break
       case 3:
         intro1.style.display = 'none'
-        alert('thats all')
+        showPage2(root, done)
+        break
+    }
+    if(step < 2) {
+      timeout = setTimeout(next, 2000)
+    }
+    step++
+  }
+}
+
+function showPage2(root, done) {
+  const intro2 = root.querySelector('.intro-2')
+  const text3 = root.querySelector('.comic-text-3')
+  const image4 = root.querySelector('.comic-4 .comic-image')
+  const image5 = root.querySelector('.comic-5 .comic-image')
+  const image6 = root.querySelector('.comic-6 .comic-image')
+
+  image4.style.backgroundImage = `url(${introImage4})`
+  image5.style.backgroundImage = `url(${introImage5})`
+  image6.style.backgroundImage = `url(${introImage6})`
+
+  let step = 0
+  let timeout = setTimeout(next)
+  intro2.addEventListener('click', next)
+
+  function next() {
+    clearTimeout(timeout)
+    switch(step) {
+      case 0:
+        intro2.style.display = 'block'
+        image4.style.opacity = 1
+        break
+      case 1:
+        image5.style.opacity = 1
+        break
+      case 2:
+        image6.style.opacity = 1
+        text3.style.opacity = 1
+        break
+      case 3:
+        done()
         break
     }
     if(step < 2) {

@@ -6,7 +6,7 @@ import './language'
 const isFirstTime = true // !storage.getItem('playedIntro')
 
 if(isFirstTime) {
-  playIntro(root)
+  playIntro(() => alert('DONE!'))
 } else {
   runQuiz({
     difficultyLvl: 4,
