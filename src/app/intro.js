@@ -4,7 +4,6 @@ import introHtml from './intro.html'
 import introImage1 from './gfx/intro1'
 import introImage2 from './gfx/intro2'
 import introImage3 from './gfx/intro3'
-import introImage4 from './gfx/intro4'
 import introImage5 from './gfx/intro5'
 import introImage6 from './gfx/intro6'
 
@@ -66,7 +65,7 @@ function showPage2(root, done) {
   const image5 = root.querySelector('.comic-5 .comic-image')
   const image6 = root.querySelector('.comic-6 .comic-image')
 
-  image4.style.backgroundImage = `url(${introImage4})`
+  image4.style.backgroundColor = 'cornflowerblue'
   image5.style.backgroundImage = `url(${introImage5})`
   image6.style.backgroundImage = `url(${introImage6})`
 

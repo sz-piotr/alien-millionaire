@@ -37,6 +37,7 @@
 }
 
 .comic {
+  position: relative;
   float: left;
   padding: 4px;
 }
@@ -101,4 +102,71 @@
 .comic-text-3 {
   bottom: 4px;
   right: 4px;
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 15px;
+  background-color: white;
+  padding: 20px;
+  border: 2px solid black;
+}
+
+.bubble::before,
+.bubble::after {
+  content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+}
+
+.bubble-left::before {
+  border: 10px solid;
+  border-color: black black transparent transparent;
+	left: -20px;
+  right: auto;
+  top: 12px;
+	bottom: auto;
+}
+
+.bubble-left::after{
+	border: 8px solid;
+	border-color: white white transparent transparent;
+	left: -16px;
+  right: auto;
+  top: 14px;
+	bottom: auto;
+}
+
+.bubble-right::before {
+  border: 10px solid;
+  border-color: black transparent transparent black;
+  left: auto;
+	right: -20px;
+  top: 12px;
+	bottom: auto;
+}
+
+.bubble-right::after{
+	border: 8px solid;
+	border-color: white transparent transparent white;
+  left: auto;
+	right: -16px;
+  top: 14px;
+	bottom: auto;
+}
+
+.bubble-1 {
+  top: 15%;
+  left: 30px;
+}
+
+.bubble-2 {
+  top: 45%;
+  right: 30px;
+}
+
+.bubble-3 {
+  top: 70%;
+  left: 30px;
 }
