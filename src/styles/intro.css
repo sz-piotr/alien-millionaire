@@ -108,8 +108,11 @@
   position: absolute;
   border-radius: 15px;
   background-color: white;
-  padding: 20px;
-  border: 2px solid black;
+  padding: 7px 12px;
+  border: 3px solid black;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: sans-serif;
 }
 
 .bubble::before,
@@ -132,9 +135,9 @@
 .bubble-left::after{
 	border: 8px solid;
 	border-color: white white transparent transparent;
-	left: -16px;
+	left: -13px;
   right: auto;
-  top: 14px;
+  top: 15px;
 	bottom: auto;
 }
 
@@ -151,22 +154,39 @@
 	border: 8px solid;
 	border-color: white transparent transparent white;
   left: auto;
-	right: -16px;
-  top: 14px;
+	right: -13px;
+  top: 15px;
 	bottom: auto;
 }
 
 .bubble-1 {
-  top: 15%;
+  top: 12%;
   left: 30px;
 }
 
 .bubble-2 {
-  top: 45%;
+  top: 40%;
   right: 30px;
 }
 
 .bubble-3 {
-  top: 70%;
+  top: 67%;
   left: 30px;
+}
+
+@media only screen and (min-width: 900px) {
+  .bubble {
+    font-size: 40px;
+    font-weight: normal;
+    padding: 14px 24px;
+  }
+
+  .bubble-1,
+  .bubble-3 {
+    left: 50px;
+  }
+
+  .bubble-2 {
+    right: 50px;
+  }
 }

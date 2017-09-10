@@ -10,7 +10,7 @@ import introImage6 from './gfx/intro6'
 export function playIntro(done) {
   const root = document.getElementById('root')
   root.innerHTML = introHtml
-  showPage1(root, done)
+  showPage2(root, done)
 
   storage.setItem('playedIntro', true)
 }
@@ -92,7 +92,7 @@ function showPage2(root, done) {
         break
     }
     if(step < 2) {
-      timeout = setTimeout(next, 2000)
+      timeout = setTimeout(next, 0)
     }
     step++
   }
