@@ -11,8 +11,6 @@ export function playIntro(done) {
   const root = document.getElementById('root')
   root.innerHTML = introHtml
   showPage1(root, done)
-
-  storage.setItem('playedIntro', true)
 }
 
 function showPage1(root, done) {

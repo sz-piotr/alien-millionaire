@@ -3,11 +3,18 @@ import { playIntro } from './intro'
 import { runQuiz } from './quiz'
 import './language'
 
-const isFirstTime = true // !storage.getItem('playedIntro')
+const isFirstTime = !storage.getItem('playedIntro')
 
 if(isFirstTime) {
-  playIntro(() => alert('DONE!'))
+  playIntro(function done() {
+    storage.setItem('playedIntro', true)
+    start()
+  })
 } else {
+  start()
+}
+
+function start() {
   runQuiz({
     difficultyLvl: 4,
     questionsCount: 5,
