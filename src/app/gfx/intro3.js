@@ -3,7 +3,7 @@ import drawPolygon from './drawPolygon'
 import drawStar from './drawStar'
 import circle from './circle'
 import drawSmooth from './drawSmooth'
-import marsGroundPattern from './marsGroundPattern'
+import { marsPattern } from './dotsPattern'
 
 const WIDTH = 1000
 const HEIGHT = 600
@@ -35,7 +35,7 @@ ctx.fillStyle = 'white'
 circle(ctx, WIDTH * 0.74, HEIGHT * 0.3, 43)
 circle(ctx, WIDTH * 0.87, HEIGHT / 2, 23)
 
-const pattern = ctx.createPattern(marsGroundPattern(300, 2000), 'repeat')
+const pattern = ctx.createPattern(marsPattern(300, 2000), 'repeat')
 ctx.fillStyle = pattern
 circle(ctx, WIDTH / 2, HEIGHT + 10000, 10200)
 

@@ -2,7 +2,7 @@ import Vector2 from './Vector2'
 import drawStar from './drawStar'
 import drawPolygon from './drawPolygon'
 import circle from './circle'
-import marsGroundPattern from './marsGroundPattern'
+import { marsPattern } from './dotsPattern'
 
 const WIDTH = 800
 const HEIGHT = 600
@@ -64,7 +64,7 @@ function drawSpaceShip(ctx, origin) {
 
 function drawPlanet(ctx, origin) {
   translated(ctx, origin, () => {
-    const pattern = ctx.createPattern(marsGroundPattern(300, 2000), 'repeat')
+    const pattern = ctx.createPattern(marsPattern(300, 2000), 'repeat')
     ctx.fillStyle = pattern
     circle(ctx, 0, 0, 200)
 

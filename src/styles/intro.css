@@ -40,6 +40,8 @@
   position: relative;
   float: left;
   padding: 4px;
+  opacity: 0;
+  transition: opacity .3s;
 }
 
 .comic-1, .comic-5 {
@@ -65,8 +67,6 @@
   background-size: cover;
   background-position: center;
   border: 3px solid black;
-  opacity: 0;
-  transition: opacity .3s;
 }
 
 .comic-text {

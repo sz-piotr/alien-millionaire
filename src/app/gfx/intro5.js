@@ -1,4 +1,4 @@
-import marsGroundPattern from './marsGroundPattern'
+import { marsPattern, skinPattern } from './dotsPattern'
 import circle from './circle'
 import Vector2 from './Vector2'
 import drawPolygon from './drawPolygon'
@@ -20,7 +20,7 @@ skyGradient.addColorStop(1, "#89d0cf")
 ctx.fillStyle = skyGradient
 ctx.fillRect(0, 0, WIDTH, HEIGHT)
 
-const pattern = ctx.createPattern(marsGroundPattern(300, 2000), 'repeat')
+const pattern = ctx.createPattern(marsPattern(300, 2000), 'repeat')
 ctx.fillStyle = pattern
 circle(ctx, WIDTH / 2, HEIGHT + 10000, 10130)
 
@@ -81,7 +81,7 @@ drawPolygon(ctx, [
   new Vector2(590, 520),
 ])
 
-ctx.fillStyle = 'red'
+ctx.fillStyle = ctx.createPattern(skinPattern(), 'repeat')
 ctx.beginPath()
 drawSmooth(ctx, [
   new Vector2(0, 500),
