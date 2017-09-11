@@ -1,0 +1,21 @@
+.menu {
+  overflow: auto;
+  text-align: center;
+}
+
+.button {
+  display: block;
+  position: relative;
+  height: 60px;
+  margin: 0 auto 30px auto;
+  width: auto;
+  color: white;
+  background-color: #211955;
+
+  outline: none;
+  border: 3px solid lightgray;
+  padding: 0 20px;
+
+  font-size: 30px;
+  line-height: 60px;
+}
