@@ -1,17 +1,26 @@
 import storage from './storage'
 import { playIntro } from './intro'
 import { runQuiz } from './quiz'
+import { showMenu } from './menu'
 import './language'
 
 const isFirstTime = !storage.getItem('playedIntro')
 
 if(isFirstTime) {
+  intro()
+} else {
+  menu()
+}
+
+function intro() {
   playIntro(function done() {
     storage.setItem('playedIntro', true)
-    start()
+    menu()
   })
-} else {
-  start()
+}
+
+function menu() {
+  showMenu(intro, start)
 }
 
 function start() {
