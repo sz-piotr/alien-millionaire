@@ -19,6 +19,7 @@ function showMenu(isFirstTime, showIntro, startGame) {
     if(confirm('Erase all saved data?')) {
       storage.removeItem('knownWords')
       storage.removeItem('playedIntro')
+      storage.removeItem('playNumber')
       location.reload()
     }
   })

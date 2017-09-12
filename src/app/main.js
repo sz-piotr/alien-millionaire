@@ -3,6 +3,7 @@ import { playIntro } from './intro'
 import { runQuiz } from './quiz'
 import { showMenu } from './menu'
 import { showFailure } from './failure'
+import { showSuccess } from './success'
 import { take, flatten, shuffle } from './utils'
 import './language'
 
@@ -36,7 +37,7 @@ function start() {
 }
 
 function onSuccess() {
-  alert('WOOOOHOOOO, mama is proud')
+  showSuccess()
 }
 
 function onFailure(quizState) {
