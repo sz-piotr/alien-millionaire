@@ -1,5 +1,7 @@
 import quizHtml from './quiz.html'
 import questions from './questions'
+import background from './gfx/background'
+import host from './gfx/host'
 import { translateSentence } from './language'
 import { shuffle } from './utils'
 
@@ -16,21 +18,25 @@ export function runQuiz(knownWords, onSuccess, onFailure) {
   }
 
   initQuiz(gameState)
-  renderQuestion(gameState.currentQuestion, knownWords)
+  renderQuestion(gameState.currentQuestion, gameState.currentIndex, knownWords)
 }
 
 function initQuiz(gameState) {
   const root = document.getElementById('root')
   root.innerHTML = quizHtml
+  root.querySelector('.quiz-wrapper').style.backgroundImage = `url('${background}')`
+  root.querySelector('.host').src = host.toDataURL()
 
-  const buttons = root.querySelectorAll('.answer-button')
+  let buttons = root.querySelectorAll('.answer-button')
+  buttons = [].__proto__.slice.call(buttons, 1)
 
   buttons.forEach((button, i) =>
     button.addEventListener('click', () => onSelectAnswer(gameState, i, buttons))
   )
 }
 
-function renderQuestion(question, knownWords) {
+function renderQuestion(question, currentIndex, knownWords) {
+  document.querySelector('.scores .score-' + currentIndex).classList.add('active')
   document.getElementById("quiz-question").innerHTML = translateSentence(question.text, knownWords)
   const answerElements = document.querySelectorAll('#quiz-answers .answer')
   question.answers.forEach((answer, index) =>
@@ -83,9 +89,9 @@ function onSelectAnswer(gameState, index, buttons) {
         if (gameState.currentIndex === gameState.questions.length) {
           gameState.onSuccess()
         } else {
-          renderQuestion(gameState.currentQuestion, gameState.knownWords)
+          renderQuestion(gameState.currentQuestion, gameState.currentIndex, gameState.knownWords)
         }
-      }, 1000)
+      }, 1500)
     } else {
       buttons[index].className = 'answer-button incorrect'
       buttons[correctIndex].className = 'answer-button correct'
@@ -95,9 +101,9 @@ function onSelectAnswer(gameState, index, buttons) {
         buttons[index].className = 'answer-button'
         buttons[correctIndex].className = 'answer-button'
         gameState.onFailure()
-      }, 1000)
+      }, 1500)
     }
-  }, 2000)
+  }, 1500)
 }
 
 function getCorrectIndex(gameState) {
