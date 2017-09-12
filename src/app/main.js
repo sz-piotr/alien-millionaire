@@ -4,9 +4,17 @@ import { runQuiz } from './quiz'
 import { showMenu } from './menu'
 import './language'
 
-const isFirstTime = !storage.getItem('playedIntro')
+const gameState = {
+  firstTime: !storage.getItem('playedIntro'),
+  knownWords: [
+    'what',
+    'one',
+    'two',
+    'red'
+  ]
+}
 
-if(isFirstTime) {
+if(gameState.firstTime) {
   intro()
 } else {
   menu()
@@ -24,17 +32,13 @@ function menu() {
 }
 
 function start() {
-  runQuiz({
-    difficultyLvl: 4,
-    questionsCount: 5,
-    intervalLengthMultiplier: 2,
-    knownWords: [
-      'what',
-      'one',
-      'two',
-      'red'
-    ],
-    onFailure: points => alert('NOPE!' + points),
-    onSuccess: () => alert('WOOOOHOOOO, mama is proud')
-  })
+  runQuiz(gameState.knownWords, onSuccess, onFailure)
+}
+
+function onSuccess() {
+  alert('WOOOOHOOOO, mama is proud')
+}
+
+function onFailure(quizState) {
+  console.error(quizState)
 }

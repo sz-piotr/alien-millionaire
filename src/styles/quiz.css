@@ -1,0 +1,16 @@
+.answer-button {
+  display: block;
+  width: auto;
+}
+
+.answer-button.correct {
+  background-color: green;
+}
+
+.answer-button.incorrect {
+  background-color: red;
+}
+
+.answer-button.pending {
+  background-color: yellow;
+}

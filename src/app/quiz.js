@@ -1,113 +1,73 @@
 import quizHtml from './quiz.html'
-import questionsDb from './questions'
+import questions from './questions'
 import { translateSentence } from './language'
+import { shuffle } from './utils'
 
-export function runQuiz(config) {
+export function runQuiz(knownWords, onSuccess, onFailure) {
   const gameState = {
-    currentQuestion: 0,
-    questions: pickQuestions(questionsDb, config)
-  }
-  initQuiz(config, index => onSelectAnswer(gameState, index, config))
-  renderQuestion(gameState.questions[0], config.knownWords)
-}
-
-function onSelectAnswer(gameState, index, config) {
-  if (gameState.questions[gameState.currentQuestion].answers[index].correct) {
-    gameState.currentQuestion++
-    if (gameState.currentQuestion === gameState.questions.length) {
-      config.onSuccess()
-    } else {
-      let newWords = learnNewWords(gameState)
-      console.log(gameState.questions[gameState.currentQuestion])
-      console.log(newWords)
-      config.knownWords = config.knownWords.concat(newWords)
-      console.log(config.knownWords)
-      renderQuestion(gameState.questions[gameState.currentQuestion], config.knownWords)
+    currentIndex: 0,
+    questions: pickQuestions(questions, 5),
+    knownWords,
+    onSuccess,
+    onFailure() { onFailure(this) },
+    get currentQuestion() {
+      return this.questions[this.currentIndex]
     }
-  } else {
-    config.onFailure(gameState.currentQuestion)
   }
+
+  initQuiz(gameState)
+  renderQuestion(gameState.currentQuestion, knownWords)
 }
 
-function initQuiz({ difficultyLvl }, onClick) {
-  document.getElementById("root").innerHTML = quizHtml
-  const answersElement = document.getElementById("quiz-answers")
-  for(let i = 0; i < difficultyLvl; i++) {
-    answersElement.appendChild(createAnswerElement(() => onClick(i)))
-  }
+function initQuiz(gameState) {
+  const root = document.getElementById('root')
+  root.innerHTML = quizHtml
+
+  const buttons = root.querySelectorAll('.answer-button')
+
+  buttons.forEach((button, i) =>
+    button.addEventListener('click', () => onSelectAnswer(gameState, i, buttons))
+  )
 }
 
-function createAnswerElement(onClick) {
-  const li = document.createElement('li')
-  const a = document.createElement('a')
-  a.href = '#'
-  a.addEventListener('click', onClick)
-  li.appendChild(a)
-  return li
-}
-
-function renderQuestion({ text, answers }, knownWords) {
-  document.getElementById("quiz-question").innerHTML = translateSentence(text, knownWords)
-  const answerElements = document.querySelectorAll('#quiz-answers a')
-  answers.forEach((answer, index) =>
+function renderQuestion(question, knownWords) {
+  document.getElementById("quiz-question").innerHTML = translateSentence(question.text, knownWords)
+  const answerElements = document.querySelectorAll('#quiz-answers .answer')
+  question.answers.forEach((answer, index) =>
     answerElements[index].innerHTML = translateSentence(answer.text, knownWords)
   )
 }
 
-function pickQuestions(questionsDb, { difficultyLvl, questionsCount, intervalLengthMultiplier }) {
-  const maxIndex = Math.floor(questionsDb.length / questionsCount) * intervalLengthMultiplier
-  questionsDb = questionsDb.slice()
+function pickQuestions(questions, count) {
+  const maxIndex = Math.floor(questions.length / count) * 3
+  questions = questions.slice()
 
   const pickedQuestions = []
-  for(let i = 0; i < questionsCount; i++) {
-    pickedQuestions.push(pickQuestion(
-      questionsDb,
-      difficultyLvl,
-      maxIndex,
-      maxIndex / intervalLengthMultiplier - 1)
-    )
+  for(let i = 0; i < count; i++) {
+    pickedQuestions.push(pickAndRemove(questions, maxIndex))
+    questions.splice(0, Math.min(maxIndex / 3 - 1, questions.length))
   }
 
   return pickedQuestions.map((question) => ({
-    text: question.question,
-    answers: shuffle(
-      question.answers
-        .filter((answer, index) => index < difficultyLvl)
-        .map((answer, index) => ({ text: answer, correct: index === 0 }))
-    )
+    text: question.text,
+    answers: shuffle(question.answers)
   }))
 }
 
-function pickQuestion(questionsDb, difficultyLvl, maxIndex, removeCount) {
-  const questionIdx = Math.floor(Math.random() * Math.min(maxIndex, questionsDb.length))
-  const chosenQuestion = questionsDb[questionIdx]
-  questionsDb.splice(questionIdx, 1)
-  questionsDb.splice(0, Math.min(removeCount, questionsDb.length))
+function pickAndRemove(questions, maxIndex) {
+  const questionIdx = Math.floor(Math.random() * Math.min(maxIndex, questions.length))
+  const chosenQuestion = questions[questionIdx]
+  questions.splice(questionIdx, 1)
   return chosenQuestion
 }
 
-function shuffle(array) {
-  let currentIndex = array.length
-  let temporaryValue
-  let randomIndex
 
-  while (0 !== currentIndex) {
-    randomIndex = Math.floor(Math.random() * currentIndex)
-    currentIndex -= 1
-
-    temporaryValue = array[currentIndex]
-    array[currentIndex] = array[randomIndex]
-    array[randomIndex] = temporaryValue
-  }
-
-  return array
-}
 
 function learnNewWords(gameState, questionIdx) {
-  return (gameState.questions[gameState.currentQuestion - 1])
+  return (gameState.questions[gameState.current - 1])
           .text
           .split(' ')
-          .concat(gameState.questions[gameState.currentQuestion]
+          .concat(gameState.questions[gameState.current]
             .text
             .split(' ')[0]
           )
@@ -116,4 +76,52 @@ function learnNewWords(gameState, questionIdx) {
               return ['.', ',', '?', ':'].indexOf(word.slice(-1)) !== -1 ? word.slice( 0, -1 ) : word
             }
           )
+}
+
+let blocking = false
+function onSelectAnswer(gameState, index, buttons) {
+  if(blocking) {
+    return
+  }
+
+  blocking = true
+  buttons[index].className = 'answer-button pending'
+
+  let correctIndex
+  gameState.currentQuestion.answers.forEach(
+    (answer, index) => {
+      if(answer.correct) {
+        correctIndex = index
+      }
+    }
+  )
+
+  setTimeout(() => {
+    if (index === correctIndex) {
+      buttons[index].className = 'answer-button correct'
+      gameState.currentIndex++
+
+      setTimeout(() => {
+        blocking = false
+        buttons[index].className = 'answer-button'
+        console.log(gameState.currentIndex, gameState.questions.length)
+        if (gameState.currentIndex === gameState.questions.length) {
+          gameState.onSuccess()
+        } else {
+          renderQuestion(gameState.currentQuestion, gameState.knownWords)
+        }
+      }, 3000)
+    } else {
+      buttons[index].className = 'answer-button incorrect'
+      buttons[correctIndex].className = 'answer-button correct'
+      gameState.currentIndex++
+
+      setTimeout(() => {
+        blocking = false
+        buttons[index].className = 'answer-button'
+        buttons[correctIndex].className = 'answer-button'
+        gameState.onFailure()
+      }, 1000)
+    }
+  }, 2000)
 }

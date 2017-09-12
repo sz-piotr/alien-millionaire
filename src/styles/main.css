@@ -1,5 +1,7 @@
 @import "./intro.css";
 @import "./menu.css";
+@import "./quiz.css";
+
 
 * {
   box-sizing: border-box;
