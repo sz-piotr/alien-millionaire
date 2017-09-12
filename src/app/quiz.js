@@ -50,6 +50,7 @@ function pickQuestions(questions, count) {
 
   return pickedQuestions.map((question) => ({
     text: question.text,
+    words: question.words,
     answers: shuffle(question.answers)
   }))
 }
@@ -61,60 +62,33 @@ function pickAndRemove(questions, maxIndex) {
   return chosenQuestion
 }
 
-
-
-function learnNewWords(gameState, questionIdx) {
-  return (gameState.questions[gameState.current - 1])
-          .text
-          .split(' ')
-          .concat(gameState.questions[gameState.current]
-            .text
-            .split(' ')[0]
-          )
-          .map(word => word.toLowerCase())
-          .map(function(word) {
-              return ['.', ',', '?', ':'].indexOf(word.slice(-1)) !== -1 ? word.slice( 0, -1 ) : word
-            }
-          )
-}
-
 let blocking = false
 function onSelectAnswer(gameState, index, buttons) {
   if(blocking) {
     return
   }
-
   blocking = true
-  buttons[index].className = 'answer-button pending'
 
-  let correctIndex
-  gameState.currentQuestion.answers.forEach(
-    (answer, index) => {
-      if(answer.correct) {
-        correctIndex = index
-      }
-    }
-  )
+  const correctIndex = getCorrectIndex(gameState)
+  buttons[index].className = 'answer-button pending'
 
   setTimeout(() => {
     if (index === correctIndex) {
       buttons[index].className = 'answer-button correct'
-      gameState.currentIndex++
 
       setTimeout(() => {
         blocking = false
         buttons[index].className = 'answer-button'
-        console.log(gameState.currentIndex, gameState.questions.length)
+        gameState.currentIndex++
         if (gameState.currentIndex === gameState.questions.length) {
           gameState.onSuccess()
         } else {
           renderQuestion(gameState.currentQuestion, gameState.knownWords)
         }
-      }, 3000)
+      }, 1000)
     } else {
       buttons[index].className = 'answer-button incorrect'
       buttons[correctIndex].className = 'answer-button correct'
-      gameState.currentIndex++
 
       setTimeout(() => {
         blocking = false
@@ -124,4 +98,16 @@ function onSelectAnswer(gameState, index, buttons) {
       }, 1000)
     }
   }, 2000)
+}
+
+function getCorrectIndex(gameState) {
+  let correctIndex
+  gameState.currentQuestion.answers.forEach(
+    (answer, index) => {
+      if(answer.correct) {
+        correctIndex = index
+      }
+    }
+  )
+  return correctIndex
 }

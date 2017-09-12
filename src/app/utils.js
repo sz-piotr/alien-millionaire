@@ -2,6 +2,8 @@ export const flatten = (a, b) => a.concat(b)
 
 export const unique = (item, index, array) => array.indexOf(item) === index
 
+export const take = number => (item, index) => index < number
+
 export const extractWord = word => {
   const match = /^[\w']+/.exec(word)
   return match ? match[0].toLowerCase() : ''
