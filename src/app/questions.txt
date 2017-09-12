@@ -4,7 +4,7 @@ blue
 green
 yellow
 
-You have two potatoes. How much potatoes do you have?
+You have two potatoes. How many potatoes do you have?
 two
 one
 three
@@ -41,7 +41,7 @@ shoes
 tights
 
 Which of these fuels is the best for interstellar travel?
-hiperdrive cells
+hyperdrive cells
 potatoes
 coal
 chicken

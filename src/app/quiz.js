@@ -17,6 +17,11 @@ function onSelectAnswer(gameState, index, config) {
     if (gameState.currentQuestion === gameState.questions.length) {
       config.onSuccess()
     } else {
+      let newWords = learnNewWords(gameState)
+      console.log(gameState.questions[gameState.currentQuestion])
+      console.log(newWords)
+      config.knownWords = config.knownWords.concat(newWords)
+      console.log(config.knownWords)
       renderQuestion(gameState.questions[gameState.currentQuestion], config.knownWords)
     }
   } else {
@@ -96,4 +101,19 @@ function shuffle(array) {
   }
 
   return array
+}
+
+function learnNewWords(gameState, questionIdx) {
+  return (gameState.questions[gameState.currentQuestion - 1])
+          .text
+          .split(' ')
+          .concat(gameState.questions[gameState.currentQuestion]
+            .text
+            .split(' ')[0]
+          )
+          .map(word => word.toLowerCase())
+          .map(function(word) {
+              return ['.', ',', '?', ':'].indexOf(word.slice(-1)) !== -1 ? word.slice( 0, -1 ) : word
+            }
+          )
 }
