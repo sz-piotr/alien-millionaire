@@ -7,11 +7,12 @@ import { take, flatten, shuffle } from './utils'
 import './language'
 
 const gameState = {
-  firstTime: !storage.getItem('playedIntro'),
+  playedIntro: storage.getItem('playedIntro'),
+  playNumber: storage.getItem('playNumber') || 0,
   knownWords: storage.getItem('knownWords') || []
 }
 
-if(gameState.firstTime) {
+if(!gameState.playedIntro) {
   intro()
 } else {
   menu()
@@ -25,10 +26,12 @@ function intro() {
 }
 
 function menu() {
-  showMenu(intro, start)
+  showMenu(gameState.playNumber == 0, intro, start)
 }
 
 function start() {
+  gameState.playNumber++
+  storage.setItem('playNumber', gameState.playNumber)
   runQuiz(gameState.knownWords, onSuccess, onFailure)
 }
 

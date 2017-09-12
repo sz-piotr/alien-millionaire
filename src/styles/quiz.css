@@ -72,6 +72,13 @@
   cursor: pointer;
 }
 
+.answer-button.auto {
+  float: none;
+  width: 8em;
+  display: block;
+  margin: 0px auto 20px;
+}
+
 .side {
   position: absolute;
   width: 0;

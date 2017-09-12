@@ -31,6 +31,6 @@ export function showFailure(freeWords, paidWords, nextScreen) {
 
 function createWordTranslation(word) {
   const element = document.createElement('div')
-  element.innerHTML = translate(word, []) + ' -&gt; ' + word
+  element.innerHTML = translate(word, []) + ' ➜ ' + translate(word, [word])
   return element
 }

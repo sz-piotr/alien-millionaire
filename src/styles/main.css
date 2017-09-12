@@ -1,6 +1,7 @@
 @import "./intro.css";
 @import "./menu.css";
 @import "./quiz.css";
+@import "./failure.css";
 
 
 * {

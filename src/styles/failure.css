@@ -1,0 +1,17 @@
+.new-words {
+  background-color: #222;
+  color: white;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.new-words h2 {
+  font-size: 2rem;
+}
+
+.new-words h1 {
+  margin: 1rem 0;
+}
