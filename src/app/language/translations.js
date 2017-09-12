@@ -1,6 +1,7 @@
-import questions from '../questions.txt'
+import questions from '../questions'
 import alphabet from './alphabet'
 import { WheelSet } from './wheels'
+import { flatten, unique } from '../utils'
 
 const wheelSet = new WheelSet([
   "schjblypkwvaqfm'uzgtredoixn",
@@ -10,14 +11,14 @@ const wheelSet = new WheelSet([
 
 const translations = {}
 
-questions.split(/\s/)
-  .filter(word => word !== "")
-  .map(word => /[\w']+/.exec(word)[0].toLowerCase())
-  .forEach(word => {
-    if(!(word in translations)) {
-      translations[word] = generateTranslation(word)
-    }
-  })
+const words = questions
+  .map(question => question.words)
+  .reduce(flatten)
+  .filter(unique)
+
+words.forEach(function (word) {
+  translations[word] = generateTranslation(word)
+})
 
 function generateTranslation(word) {
   return word.split('')

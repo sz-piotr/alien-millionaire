@@ -1,14 +1,18 @@
-import questions from './questions.txt'
+import questionsText from './questions.txt'
+import { unique, extractWord } from './utils'
 
-export default questions.split('\n')
-  .reduce(function(questions, item, index) {
-    if(index % 6 === 0) {
-      questions.push({
-        question: item,
-        answers: []
-      })
-    } else if(index % 6 < 5) {
-      questions[Math.floor(index / 6)].answers.push(item)
+const questions = questionsText.split(/\n\s*\n/)
+  .map(question => {
+    const rows = question.split('\n')
+    return {
+      question: rows[0],
+      answers: rows.slice(1),
+      words: question.split(/\s/)
+        .map(extractWord)
+        .filter(word => word !== '')
+        .filter(unique)
     }
-    return questions
-  }, [])
+  })
+
+
+export default questions
