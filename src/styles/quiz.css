@@ -14,3 +14,13 @@
 .answer-button.pending {
   background-color: yellow;
 }
+
+.language-alien {
+  padding: 0 .3em;
+  font-family: monospace;
+}
+
+.language-human {
+  font-weight: bold;
+  font-style: italic;
+}

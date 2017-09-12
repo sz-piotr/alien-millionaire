@@ -7,9 +7,9 @@ export function translate(string, knownWords) {
   const word = extractWord(string)
   const punctuation = extractPunctuation(string)
   if(knownWords.indexOf(word) !== -1) {
-    return string
+    return `<span class="language-human">${string}</span>`
   }
-  return translations[word] + punctuation
+  return `<span class="language-alien">${translations[word] + punctuation}</span>`
 }
 
 export function translateSentence(sentence, knownWords) {

@@ -6,7 +6,7 @@ import { shuffle } from './utils'
 export function runQuiz(knownWords, onSuccess, onFailure) {
   const gameState = {
     currentIndex: 0,
-    questions: pickQuestions(questions, 5),
+    questions: pickQuestions(questions, 12),
     knownWords,
     onSuccess,
     onFailure() { onFailure(this) },

@@ -1,71 +1,179 @@
 What color is a red car?
-red
-blue
-green
-yellow
+Red
+Blue
+Green
+Yellow
 
 You have two potatoes. How many potatoes do you have?
-two
-one
-three
-five
+Two
+One
+Three
+Five
 
 How tall is a three meter wardrobe?
-three meters tall
-two meters tall
-one meter tall
-eight meters tall
+Three meters tall
+Two meters tall
+One meter tall
+Eight meters tall
 
 What is four plus four?
-eight
-one
-three
-six
+Eight
+One
+Three
+Six
 
 A green house is not:
-blue
-green
-a house
-a green house
+Blue
+Green
+A house
+A green house
 
 A tasty cheese is:
-tasty
-not tasty
-not a cheese
-a cat
+Tasty
+Not tasty
+Not a cheese
+A cat
 
 A barefoot alien has:
-no footwear
-socks
-shoes
-tights
+No footwear
+Socks
+Shoes
+Tights
 
 Which of these fuels is the best for interstellar travel?
-hyperdrive cells
-potatoes
-coal
-chicken
+Hyperdrive cells
+Potatoes
+Coal
+Chicken
 
 How many legs does five chickens have?
-ten
-five
-three
-one
+Ten
+Five
+Three
+One
 
 If you cut a piece of paper in half how many pieces you have?
-two
-one
-zero
-potato
+Two
+One
+Zero
+Potato
 
 Why did the chicken cross the road?
 To get to the other side
 To not cross the road
 I don't know
-tree
+Tree
 
 What isn't in a ham and cheese sandwich?
-mustard
-cheese
-ham
-sandwich
+Mustard
+Cheese
+Ham
+Sandwich
+
+How many sides does a square have?
+Four
+None
+Seven
+Twenty three
+
+What does a lion have on its head?
+A mane
+A hat
+Two lasers
+A planet
+
+Which stones are most common in rivers?
+Wet
+Blue
+Cinnamon
+Round
+
+Which color is paprika not?
+Blue
+Yellow
+Red
+Green
+
+What do humans usually make sandwitches of?
+Bread
+Cheese
+Eggs
+Humans
+
+What shines in the night?
+Stars
+Pickles
+Teeth
+Chicken
+
+The main ingredient of strawberry jam is:
+Strawberry
+Blueberry
+Redberry
+Potatoes
+
+Raisins are:
+Dried grapes
+Wet stones
+Wizards
+Rockets
+
+Frozen water is called:
+Ice
+Ice tea
+Tea ice
+Train
+
+Where do parallel lines meet?
+Nowhere
+In my house
+In your house
+In our house
+
+Bird and fruit
+Kiwi
+Emu
+Potato
+Chicken
+
+What is cheese made of?
+Milk
+Concrete
+Salad
+Stone
+
+What comes out if you mix yellow and blue?
+Green
+Cat
+Green cat
+Red
+
+What does the fox say?
+Ring ding ding ding dingeringeding
+Whoof
+Meow
+Quack
+
+Where does the princess live?
+In a castle
+Nowhere
+In a mud hut
+In a chicken
+
+What happens when you kiss a frog?
+Nothing happens
+You learn to fly
+The frog learns to fly
+You fly on the frog
+
+What is the hardest?
+Diamond
+Chalk
+Feather
+Fox
+
+What is love?
+Baby don't hurt me
+Don't hurt me
+No more
+Gimmie a sign
